@@ -569,7 +569,6 @@ class aides_logement(Variable):
         apl = famille('apl', period, options = [ADD])
         als = famille('als', period, options = [ADD])
         alf = famille('alf', period, options = [ADD])
-        crds_logement = famille('crds_logement', period, options = [ADD])
 
         return apl + als + alf + crds_logement
 
