@@ -15,7 +15,6 @@ log = logging.getLogger(__name__)
 
 # Salariés
 
-
 class assiette_csg_abattue(Variable):
     value_type = float
     label = u"Assiette CSG - CRDS"
@@ -291,7 +290,7 @@ class assiette_csg_crds_non_salarie(Variable):
     definition_period = YEAR
 
     def formula(individu, period):
-        rpns_individu = individu('rpns', period)
+        rpns = individu('rpns', period)
         categorie_non_salarie = individu('categorie_non_salarie', period)
         artisan = (categorie_non_salarie == TypesCategorieNonSalarie.artisan)
         commercant = (categorie_non_salarie == TypesCategorieNonSalarie.commercant)
