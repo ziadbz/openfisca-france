@@ -102,6 +102,7 @@ class reduction_loyer_solidarite(Variable):
         u"https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000036650026&dateTexte=&categorieLien=id"
         ]
     definition_period = MONTH
+    calculate_output = calculate_output_add
 
     def formula(famille, period):
         # les ressources renvoyés sont recombiné pour donner une valeur annuelle
