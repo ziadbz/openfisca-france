@@ -822,10 +822,8 @@ class aide_logement_montant_brut_avant_degressivite(Variable):
 
         montant = select([locataire, accedant], [montant_locataire, montant_accedants])
 
-        # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL
-        locataire_hlm = statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm
-        minimum_atteint = montant >= al.al_min.montant_min_mensuel.montant_min_apl_al
-        montant = (montant * minimum_atteint * not_(locataire_hlm)) + (montant * locataire_hlm)
+        # Montant minimal de versement il s'applique sur l'ALS et l'ALF et non pas sur l'APL => pas d'accord
+        montant = (montant * (montant >= al.al_min.montant_min_mensuel.montant_min_apl_al)) # * ( statut_occupation_logement != TypesStatutOccupationLogement.locataire_hlm)) + (montant * (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm)) # Montant minimal de versement
 
         return montant
 
