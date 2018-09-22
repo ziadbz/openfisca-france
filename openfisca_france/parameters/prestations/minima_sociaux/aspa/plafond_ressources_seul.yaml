@@ -39,3 +39,10 @@ values:
     value: 9638.42
   2018-04-01:
     value: 9998.40
+  2019-01-01:
+    value: 10418.40
+    reference: Article D815-1 du Code de la Sécurité Sociale, Décret n°2018-227
+  2020-01-01:
+    value: 10838.40
+    reference: Article D815-1 du Code de la Sécurité Sociale, Décret n°2018-227
+
