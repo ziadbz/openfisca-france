@@ -183,10 +183,12 @@ class asi_aspa_condition_nationalite(Variable):
 
 
 class asi_aspa_nb_alloc(Variable):
+    calculate_output = calculate_output_add
     value_type = int
     label = u"Nombre d'allocataires ASI/ASPA"
     entity = Famille
     definition_period = MONTH
+    set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
         aspa_elig_i = famille.members('aspa_eligibilite', period)
