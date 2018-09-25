@@ -82,6 +82,7 @@ class contribution_exceptionnelle_solidarite(Variable):
         hsup = individu('hsup', period)
         categorie_salarie = individu('categorie_salarie', period)
         indemnite_residence = individu('indemnite_residence', period)
+        supplement_familial_traitement = individu('supplement_familial_traitement', period)
         primes_fonction_publique = individu('primes_fonction_publique', period)
         rafp_salarie = individu('rafp_salarie', period)
         pension_civile_salarie = individu('pension_civile_salarie', period)
@@ -93,36 +94,29 @@ class contribution_exceptionnelle_solidarite(Variable):
 
         seuil_assujetissement_fds = compute_seuil_fds(parameters)
 
+        assiette = (
+                    traitement_indiciaire_brut
+                    + salaire_de_base
+                    - hsup
+                    + indemnite_residence
+                    + supplement_familial_traitement
+                    + rafp_salarie
+                    + pension_civile_salarie
+                    + primes_fonction_publique
+                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
+                    )  # - hsup 
+
         assujettis = (
             (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
             + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
             + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            ) * (
-            (
-                traitement_indiciaire_brut
-                + salaire_de_base
-                - hsup
-                ) > seuil_assujetissement_fds
-            )
+            ) * (assiette > seuil_assujetissement_fds)
 
-        # TODO: check assiette voir IPP
         cotisation = apply_bareme_for_relevant_type_sal(
             bareme_by_type_sal_name = parameters.cotsoc.cotisations_salarie,
             bareme_name = "excep_solidarite",
-            base = assujettis * max_(
-                (
-                    traitement_indiciaire_brut
-                    + salaire_de_base
-                    - hsup
-                    + indemnite_residence
-                    + rafp_salarie
-                    + pension_civile_salarie
-                    + primes_fonction_publique
-                    + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire) * cotisations_salariales_contributives
-                    ),
-                parameters.prelevements_sociaux.cotisations_sociales.fds.plafond_base_solidarite,
-                ),
+            base = assujettis * assiette,
             plafond_securite_sociale = plafond_securite_sociale,
             categorie_salarie = categorie_salarie,
             )
