@@ -1,0 +1,7 @@
+description: Bonification maximale
+reference: ipp
+values:
+  1945-01-01:
+    value: 0.0
+  2018-08-01:
+    value: 20.0

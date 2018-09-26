@@ -298,6 +298,27 @@ class ppa_bonification(Variable):
         return bonification
 
 
+class ppa_bonification2(Variable):
+    value_type = float
+    entity = Individu
+    label = u"Seconde bonification de la PPA pour un individu"
+    definition_period = MONTH
+
+    def formula_2018_08_01(individu, period, parameters, mois_demande):
+        P = parameters(mois_demande)
+        smic_horaire = P.cotsoc.gen.smic_h_b
+        revenu_activite = individu(
+            'ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+        seuil_1 = P.prestations.minima_sociaux.ppa.bonification2.seuil_bonification * smic_horaire
+        seuil_2 = P.prestations.minima_sociaux.ppa.bonification2.seuil_max_bonification * smic_horaire
+        bonification2_max = P.prestations.minima_sociaux.ppa.bonification2.bonification_max
+        bonification2 = bonification2_max * (revenu_activite - seuil_1) / (seuil_2 - seuil_1)
+        bonification2 = max_(bonification2, 0)
+        bonification2 = min_(bonification2, bonification2_max)
+
+        return bonification2
+
+
 class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
@@ -361,7 +382,8 @@ class ppa_fictive(Variable):
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
         bonification_i = famille.members('ppa_bonification', period, extra_params = [mois_demande])
-        bonification = famille.sum(bonification_i)
+        bonification2_i = famille.members('ppa_bonification2', period, extra_params = [mois_demande])
+        bonification = famille.sum(bonification_i) + famille.sum(bonification2_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise
