@@ -304,7 +304,7 @@ class ppa_bonification2(Variable):
     label = u"Seconde bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def formula_2018_08_01(individu, period, parameters, mois_demande):
+    def formula(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         revenu_activite = individu(
@@ -378,6 +378,36 @@ class ppa_fictive(Variable):
         pente = parameters(mois_demande).prestations.minima_sociaux.ppa.pente
         mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [mois_demande])
         mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period, extra_params = [mois_demande])
+        montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
+        ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
+        bonification_i = famille.members('ppa_bonification', period, extra_params = [mois_demande])
+        bonification = famille.sum(bonification_i)
+
+        ppa_montant_base = (
+            montant_forfaitaire_familialise +
+            bonification +
+            pente * ppa_revenu_activite - ppa_base_ressources - forfait_logement
+            )
+
+        ppa_deduction = (
+            montant_forfaitaire_familialise - ppa_base_ressources - forfait_logement
+            )
+
+        ppa_fictive = ppa_montant_base - max_(ppa_deduction, 0)
+        ppa_fictive = max_(ppa_fictive, 0)
+        return elig * ppa_fictive
+
+    def formula_2018_08_01(famille, period, parameters, mois_demande):
+        forfait_logement = famille('ppa_forfait_logement', mois_demande)
+        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
+
+        elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])
+        pente = parameters(mois_demande).prestations.minima_sociaux.ppa.pente
+        mff_non_majore = famille(
+            'ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [mois_demande])
+        mff_majore = famille(
+            'ppa_montant_forfaitaire_familial_majore', period, extra_params = [mois_demande])
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
