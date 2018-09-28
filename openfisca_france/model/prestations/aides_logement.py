@@ -915,15 +915,15 @@ class aide_logement_montant_brut_crds(Variable):
 class aide_logement_montant(Variable):
     value_type = float
     entity = Famille
-    label = u"Montant des aides au logement net de CRDS"
+    label = u"Montant des aides au logement"
     definition_period = MONTH
 
     def formula(famille, period):
         aide_logement_montant_brut = famille('aide_logement_montant_brut_crds', period)
-        crds_logement = famille('crds_logement', period)
-        montant = round_(aide_logement_montant_brut + crds_logement, 2)
+        #crds_logement = famille('crds_logement', period)
+        #montant = round_(aide_logement_montant_brut + crds_logement, 2)
 
-        return montant
+        return aide_logement_montant_brut
 
 
 class alf(Variable):
