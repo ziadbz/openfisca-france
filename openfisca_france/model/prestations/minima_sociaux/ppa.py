@@ -304,7 +304,7 @@ class ppa_bonification2(Variable):
     label = u"Seconde bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
+    def formula_2019_08_01(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         revenu_activite = individu(
@@ -398,7 +398,7 @@ class ppa_fictive(Variable):
         ppa_fictive = max_(ppa_fictive, 0)
         return elig * ppa_fictive
 
-    def formula_2018_08_01(famille, period, parameters, mois_demande):
+    def formula_2019_08_01(famille, period, parameters, mois_demande):
         forfait_logement = famille('ppa_forfait_logement', mois_demande)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
 
