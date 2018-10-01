@@ -35,3 +35,6 @@ values:
   2017-10-01:
     reference: https://www.legifrance.gouv.fr/eli/arrete/2017/9/28/TERL1725443A/jo/article_1
     value: 354.17
+  2019-10-01:
+    reference: Article 65 du PLF 2019 (revalorisation à 0,3%)
+    value: 355.23
