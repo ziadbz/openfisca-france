@@ -304,7 +304,7 @@ class ppa_bonification2(Variable):
     label = u"Seconde bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def formula_2019_08_01(individu, period, parameters, mois_demande):
+    def formula(individu, period, parameters, mois_demande):
         P = parameters(mois_demande)
         smic_horaire = P.cotsoc.gen.smic_h_b
         revenu_activite = individu(
