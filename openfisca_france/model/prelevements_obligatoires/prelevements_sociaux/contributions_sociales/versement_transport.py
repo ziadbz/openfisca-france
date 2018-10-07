@@ -11,37 +11,38 @@ from openfisca_france.france_taxbenefitsystem import COUNTRY_DIR
 
 class taux_versement_transport(Variable):
     value_type = float
+    default_value = .0185
     entity = Individu
     label = u""
     definition_period = MONTH
     set_input = set_input_dispatch_by_period
 
-    def formula(individu, period, parameters):
-        depcom_entreprise = individu('depcom_entreprise', period)
-        effectif_entreprise = individu('effectif_entreprise', period)
-        categorie_salarie = individu('categorie_salarie', period)
-
-        seuil_effectif = parameters(period).cotsoc.versement_transport.seuil_effectif
-
-        preload_taux_versement_transport()
-        public = (
-            (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
-            + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
-            + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
-            + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
-            )
-        taux_versement_transport = fromiter(
-            (
-                get_taux_versement_transport(code_commune, period)
-                for code_commune in depcom_entreprise
-                ),
-            dtype = 'float',
-            )
-        # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
-        # (AOT) suivante ou syndicat mixte de transport (SMT)"
-        return taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
+    #def formula(individu, period, parameters):
+    #    depcom_entreprise = individu('depcom_entreprise', period)
+    #    effectif_entreprise = individu('effectif_entreprise', period)
+    #    categorie_salarie = individu('categorie_salarie', period)
+    #
+    #    seuil_effectif = parameters(period).cotsoc.versement_transport.seuil_effectif
+    #
+    #    preload_taux_versement_transport()
+    #    public = (
+    #        (categorie_salarie == TypesCategorieSalarie.public_titulaire_etat)
+    #        + (categorie_salarie == TypesCategorieSalarie.public_titulaire_militaire)
+    #        + (categorie_salarie == TypesCategorieSalarie.public_titulaire_territoriale)
+    #        + (categorie_salarie == TypesCategorieSalarie.public_titulaire_hospitaliere)
+    #        + (categorie_salarie == TypesCategorieSalarie.public_non_titulaire)
+    #        + (categorie_salarie == TypesCategorieSalarie.non_pertinent)
+    #    )
+    #    taux_versement_transport = fromiter(
+    #        (
+    #            get_taux_versement_transport(code_commune, period)
+    #            for code_commune in depcom_entreprise
+    #            ),
+    #        dtype = 'float',
+    #        )
+    #    # "L'entreprise emploie-t-elle plus de 9 ou 10 salariés dans le périmètre de l'Autorité organisatrice de transport
+    #    # (AOT) suivante ou syndicat mixte de transport (SMT)"
+    #    return taux_versement_transport * or_(effectif_entreprise >= seuil_effectif, public) / 100
 
 
 class versement_transport(Variable):
@@ -52,7 +53,8 @@ class versement_transport(Variable):
 
     def formula(individu, period, parameters):
         assiette_cotisations_sociales = individu('assiette_cotisations_sociales', period)
-        taux_versement_transport = individu('taux_versement_transport', period)
+        # taux_versement_transport = individu('taux_versement_transport', period)
+        taux_versement_transport = .0185
         cotisation = - taux_versement_transport * assiette_cotisations_sociales
         return cotisation
 
