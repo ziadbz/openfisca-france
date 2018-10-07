@@ -174,7 +174,7 @@ class TypesAllegementModeRecouvrement(Enum):
 class allegement_fillon_mode_recouvrement(Variable):
     value_type = Enum
     possible_values = TypesAllegementModeRecouvrement
-    default_value = TypesAllegementModeRecouvrement.anticipe
+    default_value = TypesAllegementModeRecouvrement.progressif
     entity = Individu
     label = u"Mode de recouvrement des allègements Fillon"
     definition_period = MONTH

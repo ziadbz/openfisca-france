@@ -318,18 +318,18 @@ class allegement_fillon(Variable):
     def formula_2005_07_01(individu, period, parameters):
         stagiaire = individu('stagiaire', period)
         apprenti = individu('apprenti', period)
-        allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
+        # allegement_mode_recouvrement = individu('allegement_fillon_mode_recouvrement', period)
         exoneration_cotisations_employeur_jei = individu('exoneration_cotisations_employeur_jei', period)
 
         non_cumulee = not_(exoneration_cotisations_employeur_jei)
 
         # switch on 3 possible payment options
-        allegement = switch_on_allegement_mode(
-            individu, period, parameters,
-            allegement_mode_recouvrement,
-            "allegement_fillon",
-            )
-
+        # allegement = switch_on_allegement_mode(
+        #     individu, period, parameters,
+        #     allegement_mode_recouvrement,
+        #     "allegement_fillon",
+        #     )
+        allegement = compute_allegement_fillon(individu, period, parameters)
         return allegement * not_(stagiaire) * not_(apprenti) * non_cumulee
 
 
@@ -339,7 +339,7 @@ def compute_allegement_fillon(individu, period, parameters):
         https://www.service-public.fr/professionnels-entreprises/vosdroits/F24542
     """
     # Be careful ! Period is several months
-    first_month = period.first_month
+    first_month = period  # .first_month
 
     assiette = individu('assiette_allegement', period, options = [ADD])
     smic_proratise = individu('smic_proratise', period, options = [ADD])
