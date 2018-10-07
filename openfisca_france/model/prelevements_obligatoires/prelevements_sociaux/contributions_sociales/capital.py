@@ -224,7 +224,7 @@ class assiette_csg_revenus_capital(Variable):
         '''
 
         # Revenus du capital présents dans la section 2 de la déclaration de revenus
-        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir', period, options = [ADD])
+        revenus_capitaux_prelevement_forfaitaire_unique_ir = foyer_fiscal('revenus_capitaux_prelevement_forfaitaire_unique_ir_bis', period, options = [ADD])
 
         # Rentes viagères à titre onéreux
         rente_viagere_titre_onereux_net = foyer_fiscal('rente_viagere_titre_onereux_net', period)
@@ -259,6 +259,33 @@ class assiette_csg_revenus_capital(Variable):
             + assiette_csg_plus_values
             + assurance_vie_ps_exoneree_irpp_pl
             )
+
+
+class revenus_capitaux_prelevement_forfaitaire_unique_ir_bis(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Revenus des valeurs et capitaux mobiliers soumis au prélèvement forfaitaire unique (partie impôt sur le revenu)"
+    definition_period = MONTH
+
+    def formula_2018_01_01(foyer_fiscal, period, parameters):
+        '''
+        ## On copie-colle la formule des "revenus_capitaux_prelevement_forfaitaire_unique_ir" de l'impôt
+        ici, juste pour que lors de la création de contrefactuel, cette variable entre bien dans le calcul de l'assiette CSG dès 2018.
+        '''
+        year = period.this_year
+        f2dh = foyer_fiscal('f2dh', year)
+        f2ee = foyer_fiscal('f2ee', year)
+        f2dc = foyer_fiscal('f2dc', year)
+        f2fu = foyer_fiscal('f2fu', year)
+        f2ch = foyer_fiscal('f2ch', year)
+        f2ts = foyer_fiscal('f2ts', year)
+        f2tr = foyer_fiscal('f2tr', year)
+        f2tt = foyer_fiscal('f2tt', year)
+        f2fa = foyer_fiscal('f2fa', year)
+        f2go = foyer_fiscal('f2go', year)
+        majoration_revenus_reputes_distribues = parameters(period).impot_revenu.rvcm.majoration_revenus_reputes_distribues
+
+        return (f2dh + f2ee + f2dc + f2fu + f2ch + f2ts + f2tr + f2tt + f2fa + f2go * majoration_revenus_reputes_distribues) / 12
 
 
 # 3. Variables de prélèvements sociaux sur les revenus du capital
