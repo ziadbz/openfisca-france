@@ -250,8 +250,10 @@ class plus_values_base_large(Variable):
 
         f3vg = foyer_fiscal('f3vg', period)
         f3ua = foyer_fiscal('f3ua', period)
+        f3sg = foyer_fiscal('f3sg', period)
+        f3sl = foyer_fiscal('f3sl', period)
 
-        intersection_v1_v2 = f3vg + f3ua
+        intersection_v1_v2 = f3vg + f3ua + f3sg + f3sl
 
         return v1_assiette_csg_plus_values + v2_rfr_plus_values_hors_rni - intersection_v1_v2  # Pas d'item supplémentaire dans rev_cat_pv avant 2013
 
