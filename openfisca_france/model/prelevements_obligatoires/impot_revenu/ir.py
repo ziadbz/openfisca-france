@@ -2141,21 +2141,6 @@ class glo(Variable):
         return f3vf + f3vi + f3vj
 
 
-class avoirs_credits_fiscaux(Variable):
-    value_type = float
-    entity = FoyerFiscal
-    label = u"Avoir fiscal et crédits d'impôt"
-    definition_period = YEAR
-
-    def formula(foyer_fiscal, period, parameters):
-        '''
-        Avoir fiscal et crédits d'impôt (zavff)
-        '''
-        f2ab = foyer_fiscal('f2ab', period)
-
-        return f2ab
-
-
 class fon(Variable):
     value_type = float
     entity = FoyerFiscal
