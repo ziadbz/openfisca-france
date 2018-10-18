@@ -776,7 +776,28 @@ class rsa_eligibilite(Variable):
     label = u"Eligibilité au RSA et au RMI"
     definition_period = MONTH
 
-    def formula(famille, period, parameters):
+
+    def formula_2009_06_01(famille, period, parameters):
+        rsa_nb_enfants = famille('rsa_nb_enfants', period)
+        rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
+        condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
+        condition_nationalite = famille.any(condition_nationalite_i, role = Famille.PARENT)
+        rsa = parameters(period).prestations.minima_sociaux.rsa
+
+        age_i = famille.members('age', period)
+
+        etudiant_i = famille.members('etudiant', period)
+
+        # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
+        condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
+        return (
+            famille.any(condition_age_i * not_(etudiant_i), role = Famille.PARENT)
+            * condition_nationalite
+            * rsa_eligibilite_tns
+            )
+
+    def formula_2010_01_01(famille, period, parameters):
+        # Reference : "https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006074069&idArticle=LEGIARTI000021636574&dateTexte=&categorieLien=cid"
         rsa_nb_enfants = famille('rsa_nb_enfants', period)
         rsa_eligibilite_tns = famille('rsa_eligibilite_tns', period)
         condition_nationalite_i = famille.members('rsa_condition_nationalite', period)
@@ -789,15 +810,13 @@ class rsa_eligibilite(Variable):
         etudiant_i = famille.members('etudiant', period)
 
         rsa_jeune_condition_i = (
-            rsa.rsa_jeune
-            * (age_i > rsa.age_min_rsa_jeune)
+            (age_i > rsa.age_min_rsa_jeune)
             * (age_i < rsa.age_max_rsa_jeune)
             * rsa_jeune_condition_heures_travail_remplie_i
             )
 
         # rsa_nb_enfants est à valeur pour une famille, il faut le projeter sur les individus avant de faire une opération avec age_i
         condition_age_i = famille.project(rsa_nb_enfants > 0) + (age_i > rsa.age_pac)
-
         return (
             famille.any((condition_age_i | rsa_jeune_condition_i) * not_(etudiant_i), role = Famille.PARENT)
             * condition_nationalite
