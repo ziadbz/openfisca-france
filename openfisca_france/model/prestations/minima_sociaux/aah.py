@@ -380,7 +380,9 @@ class caah(Variable):
         locataire_foyer = (individu.menage('statut_occupation_logement', period) == TypesStatutOccupationLogement.locataire_foyer)
         salaire_net = individu('salaire_net', annee_precedente, options = [ADD])
 
-        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah > 0) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
+        aah_taux_plein = abs(aah - prestations.minima_sociaux.aah.montant) <= 0.1
+
+        eligible_complement_ressources = (taux_incapacite > 0.8) * ((aah_taux_plein) | (benef_asi > 0)) * not_(locataire_foyer) * (salaire_net == 0)
         complement_ressources = eligible_complement_ressources * max_(garantie_ressources - aah_montant, 0)
 
         eligible_mva = (
