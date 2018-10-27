@@ -89,7 +89,7 @@ class paje(Variable):
 
         return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca)
 
-class page_base(Variable):
+class paje_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
     entity = Famille
@@ -97,9 +97,9 @@ class page_base(Variable):
     set_input = set_input_divide_by_period
 
     def formula(famille, period, parameters):
-        return famille.condition('page_base_eligible', 'paje_base_montant', period, parameters)
+        return famille.condition('paje_base_eligible', 'paje_base_montant', period)
 
-class page_base_eligible(Variable):
+class paje_base_eligible(Variable):
     value_type = float
     entity = Famille
     definition_period = MONTH
