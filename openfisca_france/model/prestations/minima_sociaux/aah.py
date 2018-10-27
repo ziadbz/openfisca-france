@@ -86,7 +86,6 @@ class aah_base_ressources_activite_eval_trimestrielle(Variable):
         ressources_a_inclure = [
             'chomage_net',
             'indemnites_chomage_partiel',
-            'indemnites_journalieres_imposables',
             'indemnites_stage',
             'revenus_stage_formation_pro',
             'salaire_net',
