@@ -207,6 +207,7 @@ class salaire_imposable(Variable):
         hsup = individu('hsup', period)
         indemnite_fin_contrat = individu('indemnite_fin_contrat', period)
         complementaire_sante_salarie = individu('complementaire_sante_salarie', period)
+        indemnites_journalieres_imposables = individu('indemnites_journalieres_imposables', period)
 
         # Revenu du foyer fiscal projeté sur le demandeur
         rev_microsocial = individu.foyer_fiscal('rev_microsocial', period, options = [DIVIDE])
@@ -217,6 +218,7 @@ class salaire_imposable(Variable):
             + primes_salaires
             + remuneration_principale
             + primes_fonction_publique
+            + indemnites_journalieres_imposables
             + indemnite_residence
             + supplement_familial_traitement
             + csg_deductible_salaire
