@@ -89,9 +89,26 @@ class paje(Variable):
 
         return paje_base + (paje_naissance + paje_clca + paje_cmg + paje_colca)
 
-
-class paje_base(Variable):
+class page_base(Variable):
     calculate_output = calculate_output_add
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+    set_input = set_input_divide_by_period
+
+    def formula(famille, period, parameters):
+        return famille.condition('page_base_eligible', 'paje_base_montant', period, parameters)
+
+class page_base_eligible(Variable):
+    value_type = float
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        return famille.any(famille.members('enfant_eligible_paje', period))
+
+
+class paje_base_montant(Variable):
     value_type = float
     entity = Famille
     label = u"Allocation de base de la PAJE"
@@ -148,7 +165,6 @@ class paje_base(Variable):
                 )
             return plafond
 
-        a_un_enfant_eligible = famille.any(famille.members('enfant_eligible_paje', period))
         date_plus_jeune = famille.reduce(famille.members('date_naissance', period), maximum, datetime64('1066-01-01'))
         sujet_a_reforme_2014 = date_plus_jeune >= datetime64('2014-04-01')
         sujet_a_reforme_2018 = date_plus_jeune >= datetime64('2018-04-01')
@@ -173,7 +189,7 @@ class paje_base(Variable):
             * (ressources > plafond_taux_plein) * montant_taux_partiel
             )
 
-        return a_un_enfant_eligible * montant
+        return montant
 
 
 class enfant_eligible_paje(Variable):
