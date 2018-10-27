@@ -1,4 +1,4 @@
-
+.
 # -*- coding: utf-8 -*-
 from __future__ import division
 
@@ -267,6 +267,15 @@ class aah_plafond_ressources(Variable):
 class aah_base(Variable):
     calculate_output = calculate_output_add
     value_type = float
+    entity = Individu
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        return individu.condition('aah_eligible', 'aah_base_montant', period)
+
+
+class aah_base_montant(Variable):
+    value_type = float
     label = u"Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée"
     entity = Individu
     reference = [
@@ -278,7 +287,6 @@ class aah_base(Variable):
     def formula(individu, period, parameters):
         law = parameters(period).prestations
 
-        aah_eligible = individu('aah_eligible', period)
         aah_base_ressources = individu.famille('aah_base_ressources', period) / 12
         plaf_ress_aah = individu('aah_plafond_ressources', period)
         # Le montant de l'AAH est plafonné au montant de base.
@@ -287,8 +295,7 @@ class aah_base(Variable):
 
         aah_base_non_cumulable = individu('aah_base_non_cumulable', period)
 
-        return aah_eligible * min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
-
+        return min_(montant_aah, max_(0, montant_max - aah_base_non_cumulable))
 
 class aah(Variable):
     calculate_output = calculate_output_add
