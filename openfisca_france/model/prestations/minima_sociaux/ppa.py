@@ -95,9 +95,9 @@ class ppa_montant_forfaitaire_familial_majore(Variable):
     label = u"Montant forfaitaire familial (avec majoration)"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
+    def formula(famille, period, parameters):
         nb_enfants = famille('rsa_nb_enfants', period)
-        ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
+        ppa = parameters(period).prestations.minima_sociaux.ppa
 
         taux_majore = (
             ppa.majoration_isolement_femme_enceinte
@@ -187,8 +187,7 @@ class ppa_ressources_hors_activite(Variable):
 
     def formula(famille, period, parameters, mois_demande):
         aspa = famille('aspa', mois_demande)
-        # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-        pf = famille('ppa_base_ressources_prestations_familiales', period, extra_params = [mois_demande])
+        pf = famille('ppa_base_ressources_prestations_familiales', period)
 
         ass_i = famille.members('ass', mois_demande)
         ressources_hors_activite_i = famille.members('ppa_ressources_hors_activite_individu', period, extra_params = [mois_demande])
@@ -236,31 +235,25 @@ class ppa_base_ressources_prestations_familiales(Variable):
     label = u"Prestations familiales prises en compte dans le calcul de la PPA"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
-        prestations_calculees = [
-            'rsa_forfait_asf',
+    def formula(famille, period, parameters):
+        prestations = [
             'paje_base',
-            ]
-
-        prestations_autres = [
             'paje_clca',
-            'paje_prepare',
             'paje_colca',
+            'paje_prepare',
+            'rsa_forfait_asf'
             ]
+        prestation_sum = sum(famille(prestation, period) for prestation in prestations)
 
-        result = sum(famille(prestation, mois_demande) for prestation in prestations_calculees)
-        result += sum(famille(prestation, period) for prestation in prestations_autres)
-        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', mois_demande)
-        cf = famille('cf', mois_demande)
+        cf_non_majore_avant_cumul = famille('cf_non_majore_avant_cumul', period)
+        cf = famille('cf', period)
         # Seul le montant non majoré est pris en compte dans la base de ressources du RSA
         cf_non_majore = (cf > 0) * cf_non_majore_avant_cumul
 
-        af_base = famille('af_base', mois_demande)
-        af = famille('af', mois_demande)
+        af_base = famille('af_base', period)
+        af = famille('af', period)
 
-        result = result + cf_non_majore + min_(af_base, af)
-
-        return result
+        return prestation_sum + cf_non_majore + min_(af_base, af)
 
 
 class ppa_base_ressources(Variable):
@@ -302,7 +295,10 @@ class ppa_forfait_logement(Variable):
     value_type = float
     entity = Famille
     label = u"Forfait logement intervenant dans le calcul de la prime d'activité"
-    reference = u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189&dateTexte=20171222"
+    reference = [
+        u"Article R844-3 du Code de la sécurité sociale",
+        u"https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=9A3FFF4142B563EB5510DDE9F2870BF4.tplgfr41s_2?idArticle=LEGIARTI000031675988&cidTexte=LEGITEXT000006073189&dateTexte=20171222"
+    ]
     definition_period = MONTH
 
     def formula(famille, period, parameters):
@@ -322,17 +318,9 @@ class ppa_forfait_logement(Variable):
         params = parameters(period).prestations.minima_sociaux.rsa
         ppa = parameters(period).prestations.minima_sociaux.ppa
 
-        # Le montant forfaitaire se calcule de la même manière que celle de la formule 'ppa_montant_forfaitaire_familial_non_majore',
-        # sauf dans le cas où le foyer se compose de trois personnes ou plus, où le montant forfaitaire se calcule pour trois personnes seulement.
-        taux_non_majore = (
-            1
-            + (np_pers >= 2) * ppa.taux_deuxieme_personne
-            + (np_pers >= 3) * ppa.taux_troisieme_personne
-            )
+        ppa_montant_forfaitaire = famille('ppa_montant_forfaitaire', period)
 
-        montant_base = ppa.montant_de_base * taux_non_majore
-
-        montant_forfait = montant_base * (
+        montant_forfait = ppa_montant_forfaitaire * (
             (np_pers == 1) * params.forfait_logement.taux_1_personne
             + (np_pers == 2) * params.forfait_logement.taux_2_personnes
             + (np_pers >= 3) * params.forfait_logement.taux_3_personnes_ou_plus
@@ -344,6 +332,19 @@ class ppa_forfait_logement(Variable):
         return max_(montant_al, montant_nature)
 
 
+class ppa_montant_forfaitaire(Variable):
+    value_type = float
+    entity = Famille
+    label = u"Montant forfaitaire pour la prime pour l'activité fictive"
+    definition_period = MONTH
+
+    def formula(famille, period, parameters):
+        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)
+        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period)
+        mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period)
+        return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+
+
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -352,20 +353,17 @@ class ppa_fictive(Variable):
 
     def formula(famille, period, parameters, mois_demande):
         forfait_logement = famille('ppa_forfait_logement', period)
-        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])
         pente = parameters(period).prestations.minima_sociaux.ppa.pente
-        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period)
-        mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period, extra_params = [mois_demande])
-        montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
+        ppa_montant_forfaitaire = famille('ppa_montant_forfaitaire', period)
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
         bonification_i = famille.members('ppa_bonification', period)
         bonification = famille.sum(bonification_i)
 
         ppa_montant_base = (
-            montant_forfaitaire_familialise
+            ppa_montant_forfaitaire
             + bonification
             + pente
             * ppa_revenu_activite
@@ -374,7 +372,7 @@ class ppa_fictive(Variable):
             )
 
         ppa_deduction = (
-            montant_forfaitaire_familialise
+            ppa_montant_forfaitaire
             - ppa_base_ressources
             - forfait_logement
             )

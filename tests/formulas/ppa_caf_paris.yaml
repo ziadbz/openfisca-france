@@ -30,3 +30,48 @@
       2018-07: 67.94
       2018-08: 70.49
     ppa: 132.60 # Avant RDS
+
+- period: 2018-09
+  absolute_error_margin: 0.005
+  familles:
+    parents:
+      - personne1
+    enfants:
+      - enfant1
+      - enfant2
+    aide_logement:
+      2018-06: 127.56
+      2018-07: 157.86
+      2018-08: 163.8
+    af:
+      2018-06: 0
+    ppa_base_ressources_prestations_familiales:
+      2018-06: 0
+    rsa_forfait_asf:
+      2018-07: 0
+      2018-08: 0
+    rsa_isolement_recent:
+      2018-06: True
+      2018-07: True
+      2018-08: True
+  menages:
+    personne_de_reference: personne1
+    enfants:
+      - enfant1
+      - enfant2
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: personne1
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-06: 904
+        2018-07: 829
+        2018-08: 833
+    - id: enfant1
+      date_naissance: 2004-01-01
+    - id: enfant2
+      date_naissance: 2004-01-01
+  output_variables:
+    af:
+     2018-07: 131.81
+    ppa: 580.16 # Avant RDS
