@@ -68,11 +68,11 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     label = u"Montant forfaitaire familial (sans majoration)"
     definition_period = MONTH
 
-    def formula(famille, period, parameters, mois_demande):
+    def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)  # noqa F841
-        ppa = parameters(mois_demande).prestations.minima_sociaux.ppa
+        ppa = parameters(period).prestations.minima_sociaux.ppa
 
         nb_personnes = nb_parents + nb_enfants
 
@@ -282,12 +282,12 @@ class ppa_bonification(Variable):
     label = u"Bonification de la PPA pour un individu"
     definition_period = MONTH
 
-    def formula(individu, period, parameters, mois_demande):
-        P = parameters(mois_demande)
+    def formula(individu, period, parameters):
+        P = parameters(period)
         smic_horaire = P.cotsoc.gen.smic_h_b
         ppa_base = P.prestations.minima_sociaux.ppa.montant_de_base
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
-        revenu_activite = individu('ppa_revenu_activite_individu', period, extra_params = [mois_demande])
+        revenu_activite = individu('ppa_revenu_activite_individu', period, extra_params = [period])
         seuil_1 = P.prestations.minima_sociaux.ppa.bonification.seuil_bonification * smic_horaire
         seuil_2 = P.prestations.minima_sociaux.ppa.bonification.seuil_max_bonification * smic_horaire
         bonification_max = round_(P.prestations.minima_sociaux.ppa.bonification.taux_bonification_max * ppa_base, 2)
@@ -351,17 +351,17 @@ class ppa_fictive(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters, mois_demande):
-        forfait_logement = famille('ppa_forfait_logement', mois_demande)
+        forfait_logement = famille('ppa_forfait_logement', period)
         ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', mois_demande)
         # Le paramètre extra_params est déprécié. Ne pas s'inspirer de ce qui suit
         elig = famille('ppa_eligibilite', period, extra_params = [mois_demande])
-        pente = parameters(mois_demande).prestations.minima_sociaux.ppa.pente
-        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period, extra_params = [mois_demande])
+        pente = parameters(period).prestations.minima_sociaux.ppa.pente
+        mff_non_majore = famille('ppa_montant_forfaitaire_familial_non_majore', period)
         mff_majore = famille('ppa_montant_forfaitaire_familial_majore', period, extra_params = [mois_demande])
         montant_forfaitaire_familialise = where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
         ppa_base_ressources = famille('ppa_base_ressources', period, extra_params = [mois_demande])
         ppa_revenu_activite = famille('ppa_revenu_activite', period, extra_params = [mois_demande])
-        bonification_i = famille.members('ppa_bonification', period, extra_params = [mois_demande])
+        bonification_i = famille.members('ppa_bonification', period)
         bonification = famille.sum(bonification_i)
 
         ppa_montant_base = (

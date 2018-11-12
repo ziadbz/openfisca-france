@@ -1,0 +1,32 @@
+- period: 2018-09
+  absolute_error_margin: 0.005
+  familles:
+    parents: ["personne1"]
+    aide_logement:
+      2018-06: 80
+      2018-07: 80
+      2018-08: 80
+  menages:
+    personne_de_reference: "personne1"
+    statut_occupation_logement: locataire_vide
+  individus:
+    - id: "personne1"
+      date_naissance: 1980-01-01
+      salaire_net:
+        2018-06: 1069
+        2018-07: 1069
+        2018-08: 1069
+  output_variables:
+    ppa_forfait_logement:
+      2018-06: 63.78
+      2018-07: 63.78
+      2018-08: 66.18
+    ppa_montant_forfaitaire_familial_non_majore:
+      2018-06: 531.51
+      2018-07: 531.51
+      2018-08: 551.51
+    ppa_bonification:
+      2018-06: 67.94
+      2018-07: 67.94
+      2018-08: 70.49
+    ppa: 132.60 # Avant RDS
