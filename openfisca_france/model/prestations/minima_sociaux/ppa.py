@@ -71,12 +71,10 @@ class ppa_montant_forfaitaire_familial_non_majore(Variable):
     def formula(famille, period, parameters):
         nb_parents = famille('nb_parents', period)
         nb_enfants = famille('rsa_nb_enfants', period)
-        ppa_majoree_eligibilite = famille('rsa_majore_eligibilite', period)  # noqa F841
         ppa = parameters(period).prestations.minima_sociaux.ppa
 
         nb_personnes = nb_parents + nb_enfants
 
-        # Dans la formule "ppa_forfait_logement", le montant forfaitaire se calcule pour trois personnes dans le cas où le foyer se compose de trois personnes ou plus.
         taux_non_majore = (
             1
             + (nb_personnes >= 2) * ppa.taux_deuxieme_personne
