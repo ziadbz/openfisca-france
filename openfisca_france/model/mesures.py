@@ -56,31 +56,29 @@ class revenu_disponible(Variable):
     definition_period = YEAR
 
     def formula(menage, period, parameters):
-        pensions_nettes_i = menage.members('pensions_nettes', period)
-        revenus_nets_du_capital_i = menage.members('revenus_nets_du_capital', period)
-        revenus_nets_du_travail_i = menage.members('revenus_nets_du_travail', period)
-        pensions_nettes = menage.sum(pensions_nettes_i)
-        revenus_nets_du_capital = menage.sum(revenus_nets_du_capital_i)
-        revenus_nets_du_travail = menage.sum(revenus_nets_du_travail_i)
+        composantes = [
+            'pensions_nettes',
+            'revenus_nets_du_capital',
+            'revenus_nets_du_travail',
+            'impots_directs',
+            'ppe',
+            'prestations_sociales']
 
-        impots_directs = menage('impots_directs', period)
+        def aggregate(variable_name, entity):
+            variable = entity.simulation.tax_benefit_system.get_variable(variable_name)
+            if variable.entity == type(entity):
+                return entity(variable_name, period)
+            elif variable.entity == Individu:
+                valeurs_individuelles = entity.members(variable_name, period)
+                return entity.sum(valeurs_individuelles)
+            elif variable.entity == FoyerFiscal:
+                valeurs_individuelles = entity.members.foyer_fiscal(variable_name, period)
+                return entity.sum(valeurs_individuelles, role = FoyerFiscal.DECLARANT_PRINCIPAL)
+            elif variable.entity == Famille:
+                valeurs_individuelles = entity.members.famille(variable_name, period)
+                return entity.sum(valeurs_individuelles, role = Famille.DEMANDEUR)
 
-        # On prend en compte les PPE touchés par un foyer fiscal dont le déclarant principal est dans le ménage
-        ppe_i = menage.members.foyer_fiscal('ppe', period)  # PPE du foyer fiscal auquel appartient chaque membre du ménage
-        ppe = menage.sum(ppe_i, role = FoyerFiscal.DECLARANT_PRINCIPAL)  # On somme seulement pour les déclarants principaux
-
-        # On prend en compte les prestations sociales touchées par une famille dont le demandeur est dans le ménage
-        prestations_sociales_i = menage.members.famille('prestations_sociales', period)  # PF de la famille auquel appartient chaque membre du ménage
-        prestations_sociales = menage.sum(prestations_sociales_i, role = Famille.DEMANDEUR)  # On somme seulement pour les demandeurs
-
-        return (
-            revenus_nets_du_travail
-            + impots_directs
-            + pensions_nettes
-            + ppe
-            + prestations_sociales
-            + revenus_nets_du_capital
-            )
+        return sum([aggregate(composante, menage) for composante in composantes])
 
 
 class niveau_de_vie(Variable):

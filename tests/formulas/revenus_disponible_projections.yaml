@@ -1,0 +1,23 @@
+- name: "Somme des revenus disponibles"
+  period: "2017"
+  relative_error_margin: 0.01
+  individus:
+    - id: parent1
+    - id: parent2
+    - id: enfant1
+  familles:
+    - parents: [parent1]
+      enfants: [enfant1]
+      prestations_sociales: 0
+    - parents: [parent2]
+      prestations_sociales: 0
+  menages:
+    - personne_de_reference: parent1
+      conjoint: parent2
+  foyers_fiscaux:
+    - declarants: [parent1]
+      ppe: 500
+    - declarants: [parent2, enfant1]
+      ppe: 500
+  output_variables:
+    revenu_disponible: [1000]
