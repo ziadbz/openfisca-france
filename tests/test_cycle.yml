@@ -10,7 +10,8 @@ absolute_error_margin: 10
 period: 2018-12
 input:
   individus:
-    - echelon_bourse:
+    demandeur:
+      echelon_bourse:
         2018-12: -1
         2018-11: -1
         2018-10: -1
@@ -200,9 +201,9 @@ input:
         2018-01: 0
         2017-12: 0
       apa_eligibilite: {}
-      id: demandeur
   familles:
-    - proprietaire_proche_famille:
+    _:
+      proprietaire_proche_famille:
         2018-12: false
         2018-11: false
         2018-10: false
@@ -358,11 +359,11 @@ input:
       rsa_non_calculable: {}
       cmu_c: {}
   foyers_fiscaux:
-    - declarants:
+    _: declarants:
         - demandeur
       personnes_a_charge: []
   menages:
-    - loyer:
+    _: loyer:
         2018-12: 500
         2018-11: 500
         2018-10: 500
