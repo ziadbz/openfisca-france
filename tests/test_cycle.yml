@@ -359,11 +359,13 @@ input:
       rsa_non_calculable: {}
       cmu_c: {}
   foyers_fiscaux:
-    _: declarants:
+    _:
+      declarants:
         - demandeur
       personnes_a_charge: []
   menages:
-    _: loyer:
+    _:
+      loyer:
         2018-12: 500
         2018-11: 500
         2018-10: 500
