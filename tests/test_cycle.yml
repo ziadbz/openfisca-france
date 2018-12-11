@@ -5,6 +5,7 @@ description: |-
   OpenFisca Core 24.9.9
   OpenFisca France 29.2.0
 output:
+  ass: 0
   logement_social_eligible: false
 absolute_error_margin: 10
 period: 2018-12
