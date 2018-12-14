@@ -1,5 +1,9 @@
 # Changelog
 
+## 32.3.1
+
+* Fausse montée de version pour tester l'impact de la régression du test runner.
+
 ## 32.3.0 [#1232](https://github.com/openfisca/openfisca-france/pull/1232)
 
 * Évolution du système socio-fiscal.
