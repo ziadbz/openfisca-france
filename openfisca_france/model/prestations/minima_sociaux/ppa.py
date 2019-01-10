@@ -118,11 +118,10 @@ class ppa_revenu_activite(Variable):
     definition_period = MONTH
 
     def formula(famille, period, parameters):
-        ppa_revenu_activite_i = famille.members(
-            'ppa_revenu_activite_individu', period)
-        ppa_revenu_activite = famille.sum(ppa_revenu_activite_i)
+        ppa_individu_pris_en_compte_i = famille.members('ppa_individu_pris_en_compte', period)
+        ppa_revenu_activite_i = famille.members('ppa_revenu_activite_individu', period)
 
-        return ppa_revenu_activite
+        return famille.sum(ppa_individu_pris_en_compte_i * ppa_revenu_activite_i)
 
 
 class ppa_revenu_activite_individu(Variable):
@@ -389,6 +388,19 @@ class ppa_fictive_montant_forfaitaire(Variable):
         return where(ppa_majoree_eligibilite, mff_majore, mff_non_majore)
 
 
+class ppa_individu_pris_en_compte(Variable):
+    value_type = bool
+    entity = Individu
+    label = u"Indicateur de prise en compte d'un individu dans le calcul de la prime d'activité"
+    definition_period = MONTH
+
+    def formula(individu, period, parameters):
+        rsa_enfant_a_charge = individu('rsa_enfant_a_charge', period)
+        enfant = individu('est_enfant_dans_famille', period)
+
+        return not_(enfant) + rsa_enfant_a_charge
+
+
 class ppa_fictive(Variable):
     value_type = float
     entity = Famille
@@ -401,8 +413,10 @@ class ppa_fictive(Variable):
         montant_forfaitaire_familialise = famille('ppa_fictive_montant_forfaitaire', period)
         ppa_base_ressources = famille('ppa_base_ressources', period)
         ppa_fictive_ressource_activite = famille('ppa_fictive_ressource_activite', period)
+
+        ppa_individu_pris_en_compte_i = famille.members('ppa_individu_pris_en_compte', period)
         bonification_i = famille.members('ppa_bonification', period)
-        bonification = famille.sum(bonification_i)
+        bonification = famille.sum(ppa_individu_pris_en_compte_i * bonification_i)
 
         ppa_montant_base = (
             montant_forfaitaire_familialise
