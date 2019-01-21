@@ -146,8 +146,9 @@ class ppa_revenu_activite_individu(Variable):
         revenus_mensualises = sum(individu(ressource, period) for ressource in ressources)
 
         revenus_tns_annualises = individu('ppa_rsa_derniers_revenus_tns_annuels_connus', period.this_year)
+        revenus_tns = individu('ppa_rsa_tns_base_ressource', period)
 
-        revenus_activites = revenus_mensualises + revenus_tns_annualises
+        revenus_activites = revenus_mensualises + revenus_tns_annualises + revenus_tns
 
         # L'aah est pris en compte comme revenu d'activité si revenu d'activité hors aah > 29 * smic horaire brut
         seuil_aah_activite = P.prestations.minima_sociaux.ppa.seuil_aah_activite * smic_horaire

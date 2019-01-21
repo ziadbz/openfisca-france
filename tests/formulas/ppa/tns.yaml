@@ -1,0 +1,18 @@
+- name: Lissage des ressources des travailleurs non salariés
+  period: 2018-11
+  input:
+    ppa_mois_demande:
+      ETERNITY: 2015-08-01
+    ppa_rsa_tns_mensuel:
+      2018-08: 266
+      2018-09: 662
+      2018-10: 959
+  output:
+    ppa_rsa_tns_moyenne_trimestrielle:
+      2018-08: 266 / 3
+      2018-09: (266 + 662) / 3
+      2018-10: (266 + 662 + 959) / 3
+    ppa_rsa_tns_base_ressource:
+      2018-08: (266 + 662 + 959) / 3
+      2018-09: (266 + 662 + 959) / 3
+      2018-10: (266 + 662 + 959) / 3
