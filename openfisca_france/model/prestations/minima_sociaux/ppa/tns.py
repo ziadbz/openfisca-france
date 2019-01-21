@@ -4,8 +4,6 @@ from __future__ import division
 
 from openfisca_france.model.base import *
 
-#from numpy import round as round_, logical_or as or_, remainder as remainder_, datetime64
-
 
 class ppa_rsa_tns_mensuel(Variable):
     value_type = float
@@ -28,7 +26,7 @@ class ppa_rsa_tns_base_ressource(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def formula(individu, period, parameters):    
+    def formula(individu, period, parameters):
         remainder = individu.famille('ppa_indice_du_mois_trimestre_reference', period)
         return (
             + individu('ppa_rsa_tns_moyenne_trimestrielle', period.offset(2)) * (remainder == 0)
