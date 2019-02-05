@@ -1,0 +1,1104 @@
+ # cas N°1
+ # avec application FL (66,18 €) ou si AL> FL
+- name: PPA Cas N°1
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      ppa_forfait_logement:
+        2019-03: 66.18
+        2019-02: 66.18
+        2019-01: 66.18
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+  output:
+    ppa: 180.54
+- name: PPA Cas N°1
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      ppa_forfait_logement:
+        2018-12: 66.18
+        2018-11: 66.18
+        2018-10: 66.18
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+  output:
+    ppa: 187.97
+- name: PPA Cas N°1
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      ppa_forfait_logement:
+        2018-06: 63.78
+        2018-05: 63.78
+        2018-04: 63.78
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+  output:
+    ppa: 99.07
+
+ # sans AL ni FL
+- name: PPA Cas N°1
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+  output:
+    ppa: 246.72
+- name: PPA Cas N°1
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+  output:
+    ppa: 254.15
+- name: PPA Cas N°1
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+  output:
+    ppa: 162.85
+
+ # avec 50 € d'AL
+- name: PPA Cas N°1
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      aide_logement:
+        2019-03: 50
+        2019-02: 50
+        2019-01: 50
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+  output:
+    ppa: 196.72
+- name: PPA Cas N°1
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      aide_logement:
+        2018-12: 50
+        2018-11: 50
+        2018-10: 50
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+  output:
+    ppa: 204.15
+- name: PPA Cas N°1
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      aide_logement:
+        2018-06: 50
+        2018-05: 50
+        2018-04: 50
+    foyer_fiscal:
+      declarants: personne1
+    menage:
+      personne_de_reference: personne1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+  output:
+    ppa: 112.85
+
+ # Cas N° 2
+ # avec application FL (132,36 €) ou si AL> FL
+- name: PPA Cas N°2
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_forfait_logement:
+        2019-03: 132.36
+        2019-02: 132.36
+        2019-01: 132.36
+      ppa_base_ressources_prestations_familiales:
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+      enfant1:
+        date_naissance: 2018-03-10
+  output:
+    ppa: 507.13
+- name: PPA Cas N°2
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_forfait_logement:
+        2018-12: 132.36
+        2018-11: 132.36
+        2018-10: 132.36
+      ppa_base_ressources_prestations_familiales:
+        2018-12: 0
+        2018-11: 0
+        2018-10: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      enfant1:
+        date_naissance: 2018-03-10
+  output:
+    ppa: 514.56
+- name: PPA Cas N°2
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_forfait_logement:
+        2018-06: 127.56
+        2018-05: 127.56
+        2018-04: 127.56
+      ppa_base_ressources_prestations_familiales:
+        2018-06: 0
+        2018-05: 0
+        2018-04: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      enfant1:
+        date_naissance: 2017-03-10
+  output:
+    ppa: 413.81
+
+ # sans AL ni FL
+- name: PPA Cas N°2
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_base_ressources_prestations_familiales:
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+      enfant1:
+        date_naissance: 2018-03-10
+  output:
+    ppa: 639.49
+- name: PPA Cas N°2
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_base_ressources_prestations_familiales:
+        2018-12: 0
+        2018-11: 0
+        2018-10: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      enfant1:
+        date_naissance: 2018-03-10
+  output:
+    ppa: 646.92
+- name: PPA Cas N°2
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      ppa_base_ressources_prestations_familiales:
+        2018-06: 0
+        2018-05: 0
+        2018-04: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      enfant1:
+        date_naissance: 2017-03-10
+  output:
+    ppa: 541.37
+
+ # avec 100 € d'AL
+- name: PPA Cas N°2
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      aide_logement:
+        2019-03: 100
+        2019-02: 100
+        2019-01: 100
+      ppa_base_ressources_prestations_familiales:
+        2019-03: 0
+        2019-02: 0
+        2019-01: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-02: 1171.34
+          2019-01: 1171.34
+      enfant1:
+        date_naissance: 2018-03-10
+  output:
+    ppa: 539.49
+- name: PPA Cas N°2
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      aide_logement:
+        2018-12: 100
+        2018-11: 100
+        2018-10: 100
+      ppa_base_ressources_prestations_familiales:
+        2018-12: 0
+        2018-11: 0
+        2018-10: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      enfant1:
+        date_naissance: 2017-03-10
+  output:
+    ppa: 546.93
+- name: PPA Cas N°2
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: enfant1
+      aide_logement:
+        2018-06: 100
+        2018-05: 100
+        2018-04: 100
+      ppa_base_ressources_prestations_familiales:
+        2018-06: 0
+        2018-05: 0
+        2018-04: 0
+    foyer_fiscal:
+      declarants: personne1
+      personnes_a_charge: enfant1
+    menage:
+      personne_de_reference: personne1
+      enfants: enfant1
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      enfant1:
+        date_naissance: 2017-03-10
+  output:
+    ppa: 441.37
+
+ # Cas N° 3
+ # avec application FL (163,80) ou si AL> FL
+- name: PPA Cas N°3
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2019-03: 163.80
+        2019-02: 163.80
+        2019-01: 163.80
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 391.45
+          2019-02: 391.45
+          2019-01: 391.45
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 238.78
+- name: PPA Cas N°3
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2018-12: 163.80
+        2018-11: 163.80
+        2018-10: 163.80
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 382.99
+          2018-11: 382.99
+          2018-10: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 233.62
+- name: PPA Cas N°3
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2018-06: 157.86
+        2018-05: 157.86
+        2018-04: 157.86
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 382.99
+          2018-05: 382.99
+          2018-04: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 237.45
+
+ # sans AL ni FL
+- name: PPA Cas N°3
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 391.45
+          2019-02: 391.45
+          2019-01: 391.45
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 238.78
+- name: PPA Cas N°3
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 382.99
+          2018-11: 382.99
+          2018-10: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 233.62
+- name: PPA Cas N°3
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 382.99
+          2018-05: 382.99
+          2018-04: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 237.45
+
+ # avec 150 € d'AL
+- name: PPA Cas N°3
+  period: 2019-04
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-03: 150
+        2019-02: 150
+        2019-01: 150
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 391.45
+          2019-02: 391.45
+          2019-01: 391.45
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 238.78
+- name: PPA Cas N°3
+  period: 2019-01
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2018-12: 150
+        2018-11: 150
+        2018-10: 150
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 382.99
+          2018-11: 382.99
+          2018-10: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 233.62
+- name: PPA Cas N°3
+  period: 2018-07
+  absolute_error_margin: 0.03
+  input:
+    famille:
+      parents: personne1
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2018-06: 150
+        2018-05: 150
+        2018-04: 150
+    foyer_fiscal:
+      declarants: [personne1]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 382.99
+          2018-05: 382.99
+          2018-04: 382.99
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 237.45
+
+ # Cas N° 4
+ # avec application FL (163,80) ou si AL> FL
+- name: PPA Cas N°4
+  period: 2019-04
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2019-03: 163.80
+        2019-02: 163.80
+        2019-01: 163.80
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-04: 1171.34
+          2019-01: 1171.34
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2019-03: 585.67
+          2019-04: 585.67
+          2019-01: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 330.02
+- name: PPA Cas N°4
+  period: 2019-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2018-12: 163.80
+        2018-11: 163.80
+        2018-10: 163.80
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-12: 585.67
+          2018-11: 585.67
+          2018-10: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 369.61
+- name: PPA Cas N°4
+  period: 2018-07
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      ppa_forfait_logement:
+        2018-06: 157.86
+        2018-05: 157.86
+        2018-04: 157.86
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-06: 585.67
+          2018-05: 585.67
+          2018-04: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 257.80
+
+ # sans AL ni FL
+- name: PPA Cas N°4
+  period: 2019-04
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-04: 1171.34
+          2019-01: 1171.34
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2019-03: 585.67
+          2019-04: 585.67
+          2019-01: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 493.82
+- name: PPA Cas N°4
+  period: 2019-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-12: 585.67
+          2018-11: 585.67
+          2018-10: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 501.97
+- name: PPA Cas N°4
+  period: 2018-07
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-06: 585.67
+          2018-05: 585.67
+          2018-04: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 433.66
+
+ # avec 100 € d'AL
+- name: PPA Cas N°4
+  period: 2019-04
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2019-03: 100
+        2019-04: 100
+        2019-01: 100
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2019-03: 1171.34
+          2019-04: 1171.34
+          2019-01: 1171.34
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2019-03: 585.67
+          2019-04: 585.67
+          2019-01: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 393.82
+- name: PPA Cas N°4
+  period: 2019-01
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2018-12: 100
+        2018-11: 100
+        2018-10: 100
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-12: 1148.96
+          2018-11: 1148.96
+          2018-10: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-12: 585.67
+          2018-11: 585.67
+          2018-10: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 401.97
+- name: PPA Cas N°4
+  period: 2018-07
+  relative_error_margin: 0.01
+  input:
+    famille:
+      parents: [personne1, personne2]
+      enfants: [enfant1, enfant2]
+      aide_logement:
+        2018-06: 100
+        2018-05: 100
+        2018-04: 100
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+      personnes_a_charge: [enfant1, enfant2]
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      enfants: [enfant1, enfant2]
+      statut_occupation_logement: locataire_vide
+    individus:
+      personne1:
+        date_naissance: 1980-01-01
+        salaire_net:
+          2018-06: 1148.96
+          2018-05: 1148.96
+          2018-04: 1148.96
+      personne2:
+        date_naissance: 1982-02-02
+        salaire_net:
+          2018-06: 585.67
+          2018-05: 585.67
+          2018-04: 585.67
+      enfant1:
+        date_naissance: 2005-03-10
+      enfant2:
+        date_naissance: 2008-01-04
+  output:
+    ppa: 333.66
