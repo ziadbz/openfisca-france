@@ -1,0 +1,5 @@
+- period: 2019-01
+  input:
+    zone_apl: zone_1
+  output:
+    is_zone_1: true
