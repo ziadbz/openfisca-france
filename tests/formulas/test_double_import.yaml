@@ -1,5 +1,13 @@
 - period: 2019-01
+  name: Test qui ne passe pas à cause du problème de double import
   input:
     zone_apl: zone_1
   output:
     is_zone_1: true
+
+- period: 2019-01
+  name: workaround avec possbile_values
+  input:
+    zone_apl: zone_2
+  output:
+    is_zone_2: true
