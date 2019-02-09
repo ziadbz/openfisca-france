@@ -1,90 +1,100 @@
 name: IJ et aides au logement
 period: 2018-05
-individus:
-  - id: demandeur
-    indemnites_journalieres_accident_travail:
-      2017-05: 15000
-      2017-06: 15000
-      2017-07: 15000
-      2017-08: 15000
-      2017-09: 15000
-      2017-10: 15000
-      2017-11: 15000
-      2017-12: 15000
-      2018-01: 15000
-      2018-02: 15000
-      2018-03: 15000
-      2018-04: 15000
-      2018-05: 15000
-    indemnites_journalieres_maladie:
-      2017-05: 15000
-      2017-06: 15000
-      2017-07: 15000
-      2017-08: 15000
-      2017-09: 15000
-      2017-10: 15000
-      2017-11: 15000
-      2017-12: 15000
-      2018-01: 15000
-      2018-02: 15000
-      2018-03: 15000
-      2018-04: 15000
-      2018-05: 15000
-    indemnites_journalieres_maladie_professionnelle:
-      2017-05: 15000
-      2017-06: 15000
-      2017-07: 15000
-      2017-08: 15000
-      2017-09: 15000
-      2017-10: 15000
-      2017-11: 15000
-      2017-12: 15000
-      2018-01: 15000
-      2018-02: 15000
-      2018-03: 15000
-      2018-04: 15000
-      2018-05: 15000
-    date_arret_de_travail:
-      2018-05: '2001-01-01'
-      2018-04: '2001-01-01'
-      2018-03: '2001-01-01'
-      2018-02: '2001-01-01'
-    salaire_imposable:
-      '2016': 0
-    chomage_imposable:
-      '2016': 0
-    retraite_imposable:
-      '2016': 0
-    frais_reels:
-      '2016': 0
-    pensions_alimentaires_percues:
-      '2016': 0
-    age:
-      2018-05: 33
-      2018-04: 33
-      2018-03: 33
-      2018-02: 33
-    age_en_mois:
-      2018-05: 397
-      2018-04: 397
-      2018-03: 397
-      2018-02: 397
-menages:
-  - id: menage
-    loyer:
-      2018-05: 500
-      2018-04: 500
-      2018-03: 500
-      2018-02: 500
-    charges_locatives:
-      2018-05: 15
-      2018-04: 15
-      2018-03: 15
-      2018-02: 15
-    statut_occupation_logement:
-      2018-05: locataire_vide
-      2018-04: locataire_vide
-      2018-03: locataire_vide
-      2018-02: locataire_vide
-output_variables:
+input:
+  individus:
+    demandeur:
+      indemnites_journalieres_accident_travail:
+        2017-05: 15000
+        2017-06: 15000
+        2017-07: 15000
+        2017-08: 15000
+        2017-09: 15000
+        2017-10: 15000
+        2017-11: 15000
+        2017-12: 15000
+        2018-01: 15000
+        2018-02: 15000
+        2018-03: 15000
+        2018-04: 15000
+        2018-05: 15000
+      indemnites_journalieres_maladie:
+        2017-05: 15000
+        2017-06: 15000
+        2017-07: 15000
+        2017-08: 15000
+        2017-09: 15000
+        2017-10: 15000
+        2017-11: 15000
+        2017-12: 15000
+        2018-01: 15000
+        2018-02: 15000
+        2018-03: 15000
+        2018-04: 15000
+        2018-05: 15000
+      indemnites_journalieres_maladie_professionnelle:
+        2017-05: 15000
+        2017-06: 15000
+        2017-07: 15000
+        2017-08: 15000
+        2017-09: 15000
+        2017-10: 15000
+        2017-11: 15000
+        2017-12: 15000
+        2018-01: 15000
+        2018-02: 15000
+        2018-03: 15000
+        2018-04: 15000
+        2018-05: 15000
+      date_arret_de_travail:
+        2018-05: '2001-01-01'
+        2018-04: '2001-01-01'
+        2018-03: '2001-01-01'
+        2018-02: '2001-01-01'
+      salaire_imposable:
+        '2016': 0
+      chomage_imposable:
+        '2016': 0
+      retraite_imposable:
+        '2016': 0
+      frais_reels:
+        '2016': 0
+      pensions_alimentaires_percues:
+        '2016': 0
+      age:
+        2018-05: 33
+        2018-04: 33
+        2018-03: 33
+        2018-02: 33
+      age_en_mois:
+        2018-05: 397
+        2018-04: 397
+        2018-03: 397
+        2018-02: 397
+  menages:
+    menage:
+      loyer:
+        2018-05: 500
+        2018-04: 500
+        2018-03: 500
+        2018-02: 500
+      charges_locatives:
+        2018-05: 15
+        2018-04: 15
+        2018-03: 15
+        2018-02: 15
+      statut_occupation_logement:
+        2018-05: locataire_vide
+        2018-04: locataire_vide
+        2018-03: locataire_vide
+        2018-02: locataire_vide
+  familles:
+    f0:
+      parents: [demandeur]
+  foyers_fiscaux:
+    ff0:
+      declarants: [demandeur]
+  menages:
+    m0:
+      personne_de_reference: [demandeur]
+output:
   aide_logement: 0
