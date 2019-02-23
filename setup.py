@@ -56,6 +56,7 @@ setup(
     include_package_data = True,  # Will read MANIFEST.in
     install_requires = [
         "OpenFisca-Core[web-api] >= 25.3, < 26.0",
+        "openfisca_tracker >= 0.4.0, < 1.0.0"
         ],
     message_extractors = {"openfisca_france": [
         ("**.py", "python", None),
