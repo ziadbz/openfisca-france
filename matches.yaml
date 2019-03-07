@@ -1,0 +1,118 @@
+no_match: [prestations.aides_logement.loyers_plafond.par_zone.zone_1.degressivite, prestations.aides_logement.r2.taux3_dom, prestations.aides_logement.r1.majoration_enfant_supp_a_charge_supp, prestations.aides_logement.R0, prestations.aides_logement.taux_participation_loyer.minorant_pour_la_1e_tranche, prestations.aides_logement.loyers_plafond.par_zone.zone_2.suppression, prestations.aides_logement.taux_participation_loyer.taux_tranche_1, prestations.aides_logement.al_min.montant_min_mensuel.apl1_foyer, prestations.aides_logement.rmi, prestations.aides_logement.loyers_plafond.colocation, prestations.aides_logement.loyers_plafond.autre, prestations.aides_logement.loyers_plafond.chambre, prestations.aides_logement.taux_participation_fam.dom, prestations.aides_logement.autres.abat_sal, prestations.aides_logement.autres.nr_seuil, prestations.aides_logement.patrimoine, prestations.aides_logement.loyers_plafond.par_zone.zone_2.degressivite, prestations.aides_logement.loyers_plafond.par_zone.zone_1.suppression, prestations.aides_logement.loyers_plafond.par_zone.zone_3.degressivite, prestations.aides_logement.ressources, prestations.aides_logement.loyers_plafond.par_zone.zone_3.suppression]
+other:
+  prestations.aides_logement.al_charge.personne_isolee_ou_menage_seul.cas_des_colocataires_ou_des_proprietaires_1:
+    prestations_sociales.allocations_logement.al_charge.personne_isolee_menage_seul.cas_colocataires_proprietaires_1: [16, 0, 1, 85, 3.5]
+  prestations.aides_logement.al_min.montant_min_mensuel.apl2_foyer:
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl_al: [1, 0, 4, 78, 2.0]
+  prestations.aides_logement.al_min.montant_min_mensuel.montant_min_apl_al.apl:
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl2_foyer: [1, 1, 4, 70, 2.0]
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl_al: [5, 0, 1, 75, 1.6]
+  prestations.aides_logement.al_min.montant_min_mensuel.montant_min_apl_al.non_apl:
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl2_foyer: [1, 1, 3, 70, 2.0]
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl_al: [5, 0, 0, 73, 1.6]
+  prestations.aides_logement.al_pac.age_minimal.pour_les_ascendants_et_leur_conjoint:
+    prestations_sociales.allocations_logement.al_pac.age_minimal.ascendants_leur_conjoint_2: [1, 0, 1, 80, 2.0]
+  ? prestations.aides_logement.al_pac.age_minimal.pour_les_ascendants_et_leur_conjoints_qui_sont_invalides_ou_anciens_deportes_ou_internes
+  : ? prestations_sociales.allocations_logement.al_pac.age_minimal.ascendants_leurs_conjoints_qui_sont_invalides_anciens_deportes_internes_2
+    : [1, 0, 1, 85, 1.0]
+  ? prestations.aides_logement.al_pac.plafonds_de_ressources_que_les_potentiels_personnes_a_charge_autre_que_les_enfants_doivent_respecter_1
+  : ? prestations_sociales.allocations_logement.al_pac.plafonds_ressources_que_potentielles_personnes_charge_autre_que_enfants_doivent_respecter_1
+    : [1, 1, 12, 88, 4.0]
+  prestations.aides_logement.al_pac.pourcentage_minimal_de_handicap_pour_les_ascendants_ou_descendants_du_3eme_degre_maximum:
+    prestations_sociales.allocations_logement.al_pac.pourcentage_minimal_handicap_ascendants_descendants_3eme_degre_maximum: [1, 0, 1, 85, 1.0]
+    prestations_sociales.solidarite_insertion.invalidite.aah.taux_incapcite: [1, 0, 0, 39, 1.0]
+  prestations.aides_logement.al_param2.plafond_de_r0.foyers_avec_3_personnes_a_charge_en_du_r0:
+    prestations_sociales.allocations_logement.al_loc2.tl.debut_3eme_tranche_calcul_tl: [1, 0, 1, 52, 2.0]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_3_personnes_charge_en_r0: [2, 0, 0, 84, 1.5]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_sans_personne_charge_en_r0: [2, 0, 0, 79, 1.5]
+  prestations.aides_logement.al_param2.plafond_de_r0.foyers_sans_personne_a_charge_en_du_r0:
+    prestations_sociales.allocations_logement.al_loc2.tl.debut_3eme_tranche_calcul_tl: [1, 0, 1, 52, 2.0]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_3_personnes_charge_en_r0: [2, 0, 0, 79, 1.5]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_sans_personne_charge_en_r0: [2, 0, 0, 83, 1.5]
+  prestations.aides_logement.autres.abattement_forfaitaire:
+    prestations_sociales.allocations_logement.al_loc2.montant_forfaitaire: [1, 0, 2, 67, 1.0]
+    prestations_sociales.allocations_logement.al_param_acc_univ.montant_forfaitaire_mf0: [1, 0, 2, 63, 1.0]
+  prestations.aides_logement.forfait_charges.cas_general:
+    prestations_sociales.allocations_logement.al_charge.personne_isolee_menage_seul.cas_general: [15, 1, 1, 63, 3.3]
+  prestations.aides_logement.forfait_charges.majoration_par_enfant:
+    prestations_sociales.allocations_logement.al_charge.majoration_par_enfant_majoration_charges_2: [15, 1, 1, 70, 3.1]
+  prestations.aides_logement.participation_min.montant_forfaitaire:
+    prestations_sociales.allocations_logement.al_loc2.montant_forfaitaire_participation_minimale_po: [14, 0, 0, 59, 3.0]
+    prestations_sociales.allocations_logement.al_min.montant_minimal_mensuel.apl1_foyer: [1, 0, 14, 57, 4.0]
+  prestations.aides_logement.r1.couple_sans_enf:
+    prestations_sociales.allocations_logement.al_param_r0.r1_en_rsa_socle_1.couples_en_rmi_base: [1, 0, 1, 56, 3.0]
+  prestations.aides_logement.r1.majoration_enfant_a_charge_supp:
+    prestations_sociales.allocations_logement.al_param_r0.r1_en_rsa_socle_1.majoration_par_enfant_charge_supplementaire_en_rmi_base: [1, 0, 1, 61, 1.0]
+  prestations.aides_logement.r1.personne_isolee:
+    prestations_sociales.allocations_logement.al_param_r0.r1_en_rsa_socle_1.personnes_isolees_en_rmi_base: [1, 0, 1, 59, 2.0]
+  prestations.aides_logement.r1.personne_isolee_ou_couple_avec_1_enf:
+    prestations_sociales.allocations_logement.al_param_r0.r1_en_rsa_socle_1.personnes_isolees_couples_avec_1_enfant_en_rmi_base: [1, 0, 1, 65, 4.0]
+  prestations.aides_logement.r1.personne_isolee_ou_couple_avec_2_enf:
+    prestations_sociales.allocations_logement.al_param_r0.r1_en_rsa_socle_1.personnes_isolees_couples_avec_2_enfants_en_rmi_base: [1, 0, 1, 64, 4.0]
+  prestations.aides_logement.r2.majoration_par_enf_supp_a_charge:
+    prestations_sociales.allocations_logement.al_param_r0.r2_en_bmaf_1.majoration_par_enfant_charge_supplementaire_en_bmaf_01_01_n_2: [1, 0, 1, 57, 2.0]
+  prestations.aides_logement.r2.personnes_isolees_ou_couples_avec_2_enf:
+    prestations_sociales.allocations_logement.al_param_r0.r2_en_bmaf_1.personnes_isolees_couples_avec_2_enfants_en_bmaf_01_01_n_2: [1, 0, 1, 66, 2.0]
+  prestations.aides_logement.taux_participation_loyer.debut_de_la_3eme_tranche_pour_le_calcul_de_tl:
+    prestations_sociales.allocations_logement.al_loc2.tl.debut_3eme_tranche_calcul_tl: [1, 0, 0, 66, 2.0]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_3_personnes_charge_en_r0: [1, 0, 1, 54, 2.0]
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_sans_personne_charge_en_r0: [1, 0, 1, 53, 2.0]
+  prestations.aides_logement.taux_participation_loyer.minorant_pour_la_2e_tranche:
+    prestations_sociales.allocations_logement.al_loc2.tl.minorant_2e_tranche: [1, 0, 1, 66, 3.0]
+  prestations.aides_logement.taux_participation_loyer.minorant_pour_la_3e_tranche:
+    prestations_sociales.allocations_logement.al_loc2.tl.minorant_3e_tranche: [1, 0, 1, 66, 3.0]
+perfect_matches:
+  prestations.aides_logement.al_pac.age_limite_pour_les_enfants_a_charge:
+    prestations_sociales.allocations_logement.al_pac.age_limite_enfants_charge: [2, 0, 0, 79, 2.0]
+  prestations.aides_logement.al_param2.plafond_de_r0.foyers_avec_1_personne_a_charge_en_du_r0:
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_1_personne_charge_en_r0: [2, 0, 0, 84, 1.5]
+  prestations.aides_logement.al_param2.plafond_de_r0.foyers_avec_2_personnes_a_charge_en_du_r0:
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_2_personnes_charge_en_r0: [2, 0, 0, 84, 1.5]
+  prestations.aides_logement.al_param2.plafond_de_r0.foyers_avec_4_personnes_a_charge_et_plus_en_du_r0:
+    prestations_sociales.allocations_logement.al_param_r0.plafond_r0.foyers_avec_4_personnes_charge_plus_en_r0: [2, 0, 0, 83, 1.5]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_1.couples:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_1.couples: [16, 0, 0, 71, 4.6]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_1.majoration_par_enf_supp:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_1.majoration_par_enfant_supplementaire: [16, 0, 0, 71, 3.8]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_1.personnes_seules:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_1.personnes_seules: [16, 0, 0, 74, 4.5]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_1.un_enfant:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_1.personnes_seules_couples_avec_1_enfant: [16, 0, 0, 60, 4.6]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_2.couples:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_2.couples: [16, 0, 0, 71, 4.5]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_2.majoration_par_enf_supp:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_2.majoration_par_enfant_supplementaire: [16, 0, 0, 71, 3.8]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_2.personnes_seules:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_2.personnes_seules: [16, 0, 0, 74, 4.8]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_2.un_enfant:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_2.personnes_seules_couples_avec_1_enfant: [16, 0, 0, 60, 4.8]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_3.couples:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_3.couples: [16, 0, 0, 71, 4.8]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_3.majoration_par_enf_supp:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_3.majoration_par_enfant_supplementaire: [16, 0, 0, 71, 3.6]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_3.personnes_seules:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_3.personnes_seules: [16, 0, 0, 74, 4.4]
+  prestations.aides_logement.loyers_plafond.par_zone.zone_3.un_enfant:
+    prestations_sociales.allocations_logement.al_loc2.plafond_loyers_zone_3.personnes_seules_couples_avec_1_enfant: [16, 0, 0, 60, 4.8]
+  prestations.aides_logement.participation_min.taux:
+    prestations_sociales.allocations_logement.al_loc2.montant_proportionnel_participation_minimale_po: [1, 0, 0, 59, 2.0]
+  prestations.aides_logement.taux_participation_fam.taux_1_adulte:
+    prestations_sociales.allocations_logement.al_loc2.tf.personnes_isolees: [3, 0, 0, 51, 3.0]
+  prestations.aides_logement.taux_participation_fam.taux_1_enf:
+    prestations_sociales.allocations_logement.al_loc2.tf.personnes_seules_couples_avec_1_enfant: [3, 0, 0, 52, 2.7]
+  prestations.aides_logement.taux_participation_fam.taux_2_adulte:
+    prestations_sociales.allocations_logement.al_loc2.tf.couples_sans_enfant: [3, 0, 0, 53, 3.0]
+  prestations.aides_logement.taux_participation_fam.taux_2_enf:
+    prestations_sociales.allocations_logement.al_loc2.tf.personnes_seules_couples_avec_2_enfants: [3, 0, 0, 51, 3.0]
+  prestations.aides_logement.taux_participation_fam.taux_3_enf:
+    prestations_sociales.allocations_logement.al_loc2.tf.personnes_seules_couples_avec_3_enfants: [3, 0, 0, 51, 3.0]
+  prestations.aides_logement.taux_participation_fam.taux_4_enf:
+    prestations_sociales.allocations_logement.al_loc2.tf.personnes_seules_couples_avec_4_enfants: [3, 0, 0, 51, 3.0]
+  prestations.aides_logement.taux_participation_fam.taux_enf_supp:
+    prestations_sociales.allocations_logement.al_loc2.tf.variation_tf_par_enfant_supplementaire: [3, 0, 0, 61, 2.0]
+  prestations.aides_logement.taux_participation_loyer.debut_de_la_2eme_tranche_pour_le_calcul_de_tl_et_fin_de_la_1ere_tranche:
+    prestations_sociales.allocations_logement.al_loc2.tl.debut_2eme_tranche_calcul_tl_fin_1ere_tranche: [1, 0, 0, 69, 2.0]
+  prestations.aides_logement.taux_participation_loyer.taux_tranche_2:
+    prestations_sociales.allocations_logement.al_loc2.tl.tl_2eme_tranche: [2, 0, 0, 60, 2.0]
+  prestations.aides_logement.taux_participation_loyer.taux_tranche_3:
+    prestations_sociales.allocations_logement.al_loc2.tl.tl_3eme_tranche: [2, 0, 0, 60, 2.0]
